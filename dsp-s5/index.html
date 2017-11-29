@@ -263,26 +263,7 @@
 						<img src="img/play.wav_chroma.png" alt="image of a feature" width="100%" align="middle"/>
 					</p>
 				</div>
-				<div style="width: 25%; float: left;">
-					<p>
-						<img src="img/aircon.wav_ton.png" alt="image of a feature" width="100%" align="middle"/>
-					</p>
-				</div>
-				<div style="width: 25%; float: left;">
-					<p>
-						<img src="img/carhorn.wav_ton.png" alt="image of a feature" width="100%" align="middle"/>
-					</p>
-				</div>
-				<div style="width: 25%; float: left;">
-					<p>
-						<img src="img/music.wav_ton.png" alt="image of a feature" width="100%" align="middle"/>
-					</p>
-				</div>
-				<div style="width: 25%; float: left;">
-					<p>
-						<img src="img/play.wav_ton.png" alt="image of a feature" width="100%" align="middle"/>
-					</p>
-				</div>
+				
 				<div class="text container">
 					These plots illustrate the complexity of the data we need to process. In typical supervised learning projects, every example in the training set has the same features, providing comparable values. But this is not the case with media such as audio or images, because any two files will not contain a pair of values that are semantically equivalent. Even if two audio samples had the same size, we can’t meaningfully compare the respective value at an arbitrary point in time. It would be like an image classifier trying to distinguish between two photos by comparing the pixels found in each at the same arbitrary location.
 				</div>
@@ -308,19 +289,18 @@
 							<li>    Take the discrete cosine transform of the list of mel log powers, as if it were a signal.
 							<li>    The MFCCs are the amplitudes of the resulting spectrum.
 							</ul>
-							<img src="img/mfcc.jpg" width="400px" align="center"></img>
+							<div style="float: left, width:50%"><img src="img/mfcc.jpg" width="400px"></img></div>
 						
 						</div>
-						<li>Short term fourier transform is a very effective and generic tool that can be used to analyze a signal. In normal Fourier Tranform we take the entire time domain representation of a signal and observe its frequency domain representation. This tells us what frequency components are present in the signal. But in practical cases we often get signals that are largely varying over time. For such signals, we not only need to understand what frequency componenets are present in the signla, but how these frequency components are distributed over time for effective analysis. Thus we essentially need a mapping in frequency as well as time domain. In such a situation we break down the signal into small overlapping time frames, using a window function. By varying the window width we can ensure that the signal isnt varying heavily within it. Then we take a finite point fourier transform for the data points in these time frames. Thus, we get fourier domain representations for short durations of time.
+						<li><b></a href="https://labrosa.ee.columbia.edu/matlab/chroma-ansyn/">Chromagram using STFT</a></b>Short term fourier transform is a very effective and generic tool that can be used to analyze a signal. In normal Fourier Tranform we take the entire time domain representation of a signal and observe its frequency domain representation. This tells us what frequency components are present in the signal. But in practical cases we often get signals that are largely varying over time. For such signals, we not only need to understand what frequency componenets are present in the signla, but how these frequency components are distributed over time for effective analysis. Thus we essentially need a mapping in frequency as well as time domain. In such a situation we break down the signal into small overlapping time frames, using a window function. By varying the window width we can ensure that the signal isnt varying heavily within it. Then we take a finite point fourier transform for the data points in these time frames. Thus, we get fourier domain representations for short durations of time.
 				 		The frame wise fourier transform that we obtain is then used to derive the signal intensity as a function of frequency and time. But, rather than plotting it on a linear frequency scale as we do in a normal spectrogram, we use a logarithmic frequency scale where the frequencies increase at an order of 2. Further, two consecutive frequencies separated by an order of two are further divided into 12 frequency bins and the intensity is then plotted for each bin. This frequency scale is known as the chroma scale and the resultant spectrogram that we plot is known as the chromagram. in our feature extraction we derived the stft-based chroma features for each audio clip and then then we take a mean of all the chroma features along the time axis and we get a resultant numpy array of 12 chroma features describing each audio file. 
-						<img src="img/stft.jpg" width="400px" align="center"></img>
-					        <img src="img/stft1.jpg" width="400px" align="center"></img>
+						<div style="float: left, width:50%"><img src="img/stft.jpg" width="400px"></img></div>
+						<div style="float: left, width:50%"><img src="img/stft1.jpg" width="400px"></img></div>
+						<div style="float: left, width:50%"><img src="img/stft.png" width="400px"></img></div>
 						
 					<li><a href="https://en.wikipedia.org/wiki/Mel_scale">Mel-scaled</a> power spectrogram - the Mel Scale is used to provide greater resolution for more informative (lower) frequencies</li>
-					<li></a href="https://labrosa.ee.columbia.edu/matlab/chroma-ansyn/">Chromagram</a> of a short-time Fourier transform - projects into bins representing the 12 distinct semitones (or chroma) of the musical octave</li>
 					<li><a href="http://ieeexplore.ieee.org/document/1035731/?reload=true">Octave-based spectral contrast</a> - distributions of sound energy over octave frequencies
 					</li>
-					<li><a href="https://sites.google.com/site/tonalintervalspace/">Tonnetz</a> - estimates tonal centroids as coordinates in a six-dimensional interval space</li>
 					</ul>
 					The results of these 5 feature extractions are concatenated to give us a 193-dimensional vector for each audio clip irrespective of its length.</div>
 					<div class="text container">These featues were extracted using the librosa library in python and were stored as numpy arrays. These arrays were then separately used to train our Feed-Forward Neural Network(FFN) model to classify the audio.</div>
@@ -350,7 +330,7 @@
 	
 				<div class="subsection">
 					<div class="headingss">2.4 Prediction</div>
-					<div class="text">
+					<div class="text container">
 						<!--Text here-->
 						Code Run:<br>
 						 <iframe src="predict.html" height="50%" width="90%"></iframe> 
