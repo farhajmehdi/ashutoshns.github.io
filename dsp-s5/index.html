@@ -293,7 +293,7 @@
 							<div style="float: left, width:50%"><img src="img/mfcc.jpg" width="400px"></img></div>
 						
 						</div>
-						<li><b></a href="https://labrosa.ee.columbia.edu/matlab/chroma-ansyn/">Chromagram using STFT</a></b>Short term fourier transform is a very effective and generic tool that can be used to analyze a signal. In normal Fourier Tranform we take the entire time domain representation of a signal and observe its frequency domain representation. This tells us what frequency components are present in the signal. But in practical cases we often get signals that are largely varying over time. For such signals, we not only need to understand what frequency componenets are present in the signla, but how these frequency components are distributed over time for effective analysis. Thus we essentially need a mapping in frequency as well as time domain. In such a situation we break down the signal into small overlapping time frames, using a window function. By varying the window width we can ensure that the signal isnt varying heavily within it. Then we take a finite point fourier transform for the data points in these time frames. Thus, we get fourier domain representations for short durations of time.
+						<li><b><a href="https://labrosa.ee.columbia.edu/matlab/chroma-ansyn/">Chromagram using STFT</a></b>  <br> Short term fourier transform is a very effective and generic tool that can be used to analyze a signal. In normal Fourier Tranform we take the entire time domain representation of a signal and observe its frequency domain representation. This tells us what frequency components are present in the signal. But in practical cases we often get signals that are largely varying over time. For such signals, we not only need to understand what frequency componenets are present in the signla, but how these frequency components are distributed over time for effective analysis. Thus we essentially need a mapping in frequency as well as time domain. In such a situation we break down the signal into small overlapping time frames, using a window function. By varying the window width we can ensure that the signal isnt varying heavily within it. Then we take a finite point fourier transform for the data points in these time frames. Thus, we get fourier domain representations for short durations of time.
 				 		The frame wise fourier transform that we obtain is then used to derive the signal intensity as a function of frequency and time. But, rather than plotting it on a linear frequency scale as we do in a normal spectrogram, we use a logarithmic frequency scale where the frequencies increase at an order of 2. Further, two consecutive frequencies separated by an order of two are further divided into 12 frequency bins and the intensity is then plotted for each bin. This frequency scale is known as the chroma scale and the resultant spectrogram that we plot is known as the chromagram. in our feature extraction we derived the stft-based chroma features for each audio clip and then then we take a mean of all the chroma features along the time axis and we get a resultant numpy array of 12 chroma features describing each audio file. 
 						<div style="float: left, width:40%"><img src="img/stft.jpg" width="400px"></img></div>
 						<div style="float: left, width:40%"><img src="img/stft.png" width="350px"></img></div>
@@ -372,7 +372,7 @@
 					<div class="text">
 
 						<!-- Start edit here  -->
-						Write something here.
+						The feautores used are very effective to classify the environmental audio. Also the Feed Forward Neural Network's ability of feature learning optimized the features so to improve the accuracy. This can be seen from the 82% accuracy that was achived.
 						<!-- Stop edit here -->
 
 					</div>
@@ -382,7 +382,9 @@
 					<div class="text">
 
 						<!-- Start edit here  -->
-						Write something here.
+						<ul>
+							<li>A full-fledged real time audio surveillance system can be created by adding more classes to the same framework.
+							<li>More features can be added, especially spectral contrasts are found to be useful in this case.
 						<!-- Stop edit here -->
 
 					</div>
