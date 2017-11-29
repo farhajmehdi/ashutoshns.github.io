@@ -106,9 +106,10 @@
 
 						<!-- Start edit here  -->
 						<ul>
-							<li>Urmila Shrawankar and Vilas Thakare, "Techniques for Feature Extraction in Speech Recognition System: A Comparative Study", International Journal of Computer Applications in Engineering, Technology and Sciences (IJCAETS), pp. 412-418, 2010.</li>
-							<li>Selina Chu, Shrikanth Narayanan, and CC Jay Kuo, “Environmental sound recognition with time–frequency audio features,” IEEE Transactions on Audio, Speech, and Language Processing,vol. 17, no. 6, pp. 1142–1158, 2009.</li>
-							<li>K. J. Piczak, “Environmental sound classification with convolutional neural networks,” in 25th International Workshop on Machine Learning for Signal Processing (MLSP), Boston, MA, USA, Sep. 2015, pp. 1–6</li>
+							<li><a href="https://s3.amazonaws.com/academia.edu.documents/40296500/librosa.pdf?AWSAccessKeyId=AKIAIWOWYYGZ2Y53UL3A&Expires=1511962802&Signature=dpQHkjClczfVCyCtZ5%2F34mxLOYg%3D&response-content-disposition=inline%3B%20filename%3Dlibrosa_Audio_and_Music_Signal_Analysis.pdf">librosa: Audio and Music Signal Analysis in Python</a></li>
+							<li><a href="https://arxiv.org/pdf/1305.1145.pdf">Urmila Shrawankar and Vilas Thakare, "Techniques for Feature Extraction in Speech Recognition System: A Comparative Study", International Journal of Computer Applications in Engineering, Technology and Sciences (IJCAETS), pp. 412-418, 2010.</a></li>
+							<li><a href="http://sail.usc.edu/publications/files/SelinaChu-TASLP2009.pdf">Selina Chu, Shrikanth Narayanan, and CC Jay Kuo, “Environmental sound recognition with time–frequency audio features,” IEEE Transactions on Audio, Speech, and Language Processing,vol. 17, no. 6, pp. 1142–1158, 2009.</a></li>
+							<li><a href="karol.piczak.com/papers/Piczak2015-ESC-ConvNet.pdf">K. J. Piczak, “Environmental sound classification with convolutional neural networks,” in 25th International Workshop on Machine Learning for Signal Processing (MLSP), Boston, MA, USA, Sep. 2015, pp. 1–6</a></li>
 						</ul>
 						<!-- Stop edit here -->
 
@@ -134,7 +135,7 @@
 			</div>
 				
 			<div class="section">
-				<div class="heading">1. Proposed Approach</div>
+				<div class="heading">2. Proposed Approach</div>
 				<div class="text container">
 
 					<!-- Start edit here  -->
@@ -279,7 +280,7 @@
 						The classification model will be fed with features extracted from our audio dataset, based on which it will be trained to make a decision.All of the audio clips collected have different sampling rates. The librosa library that we used uniformly samples the clips at a frequency of 22KHz. This means that in the time domain, each second of each audio clip input has 22,000 data points. We cannot directly feed this data to train our model, because there may be many redundant features here which will harm our model's accuracy.</div>
 					<div class="text container">So we extract typical frequency domain features from these clips. We selected the features to be used here based on the results of similar studies published in the past (check the literature review section). The features we used are-
 					<ul>
-					<li>Mel-frequency cepstral coefficients (MFCC) - the coefficients that collectively make up the short-term power spectrum of a sound</li>
+					<li><b><a href="http://recognize-speech.com/feature-extraction/mfcc">Mel-frequency cepstral coefficients (MFCC)</a></b> <br> The coefficients that collectively make up the short-term power spectrum of a sound</li>
 						The difference between the cepstrum and the mel-frequency cepstrum is that in the MFC, the frequency bands are equally spaced on the mel scale, which approximates the human auditory system's response more closely than the linearly-spaced frequency bands used in the normal cepstrum. This frequency warping can allow for better representation of sound, for example, in audio compression.
 						<div class="text container">MFCCs are commonly derived as follows:
 							<ul>
@@ -295,14 +296,14 @@
 						<li><b></a href="https://labrosa.ee.columbia.edu/matlab/chroma-ansyn/">Chromagram using STFT</a></b>Short term fourier transform is a very effective and generic tool that can be used to analyze a signal. In normal Fourier Tranform we take the entire time domain representation of a signal and observe its frequency domain representation. This tells us what frequency components are present in the signal. But in practical cases we often get signals that are largely varying over time. For such signals, we not only need to understand what frequency componenets are present in the signla, but how these frequency components are distributed over time for effective analysis. Thus we essentially need a mapping in frequency as well as time domain. In such a situation we break down the signal into small overlapping time frames, using a window function. By varying the window width we can ensure that the signal isnt varying heavily within it. Then we take a finite point fourier transform for the data points in these time frames. Thus, we get fourier domain representations for short durations of time.
 				 		The frame wise fourier transform that we obtain is then used to derive the signal intensity as a function of frequency and time. But, rather than plotting it on a linear frequency scale as we do in a normal spectrogram, we use a logarithmic frequency scale where the frequencies increase at an order of 2. Further, two consecutive frequencies separated by an order of two are further divided into 12 frequency bins and the intensity is then plotted for each bin. This frequency scale is known as the chroma scale and the resultant spectrogram that we plot is known as the chromagram. in our feature extraction we derived the stft-based chroma features for each audio clip and then then we take a mean of all the chroma features along the time axis and we get a resultant numpy array of 12 chroma features describing each audio file. 
 						<div style="float: left, width:50%"><img src="img/stft.jpg" width="400px"></img></div>
+						<div style="float: left, width:40%"><img src="img/stft.png" width="350px"></img></div>
 						<div style="float: left, width:50%"><img src="img/stft1.jpg" width="400px"></img></div>
-						<div style="float: left, width:50%"><img src="img/stft.png" width="400px"></img></div>
 						
-					<li><a href="https://en.wikipedia.org/wiki/Mel_scale">Mel-scaled</a> power spectrogram - the Mel Scale is used to provide greater resolution for more informative (lower) frequencies</li>
-					<li><a href="http://ieeexplore.ieee.org/document/1035731/?reload=true">Octave-based spectral contrast</a> - distributions of sound energy over octave frequencies
+					<li><a href="http://ieeexplore.ieee.org/document/1035731/?reload=true"><b>Octave-based spectral contrast</b></a> <br> Distributions of sound energy over octave frequencies. Octave-Based Spectral Contrast considers the spectral peak, spectral valley and their difference in each sub-band. For most music, the strong spectral peaks roughly correspond with harmonic components; while non-harmonic components, or noises, often appear at spectral valleys. Thus, Spectral Contrast feature could roughly reflect the relative distribution of the harmonic and non-harmonic components in the spectrum. Previous features, such as MFCC, average the spectral distribution in each sub-band, and thus lose the relative spectral information, Considering two spectra which have different spectral distribution may have similar average spectral characteristics, the average spectral distribution is not sufficient to represent the spectral characteristics of music. However, Spectral Contrast keeps more information and may have a better discrimination in music type classification. <br> Fig. 1(a) illustrates the estimation procedure of Octave-based Spectral Contrast feature. FFT is first performed on the digital samples to obtain the spectrum. Then, the frequency domain is divided into sub-bands by several Octave-scale filters. The strength of spectral peaks, valleys, and their differences are estimated in each sub-band. After being translated into Log domain, the raw Spectral Contrast feature is mapped to an orthogonal space and eliminated the relativity among different dimensions by Karhunen-Loeve transform.<br> 
+						<img class="container" src="img/spec.jpg"width="400px"></img>	
 					</li>
 					</ul>
-					The results of these 5 feature extractions are concatenated to give us a 193-dimensional vector for each audio clip irrespective of its length.</div>
+					The results of these 5 feature extractions are concatenated to give us a 187-dimensional vector for each audio clip irrespective of its length.</div>
 					<div class="text container">These featues were extracted using the librosa library in python and were stored as numpy arrays. These arrays were then separately used to train our Feed-Forward Neural Network(FFN) model to classify the audio.</div>
 
 					</div>
